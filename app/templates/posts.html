@@ -1,0 +1,53 @@
+{% extends './layout.html' %}
+{% block title %}Posts{% endblock title %}
+
+{% block content %}
+<h1>Posts</h1>
+<form action="{{ url_for('blog.create_post') }}" method="POST">
+    <div class="mb-3">
+        <label for="inputTitle" class="form-label">Title</label>
+        <input type="text" class="form-control" id="inputTitle" name="inputTitle">
+    </div>
+    <div class="mb-3">
+        <label for="inputBody" class="form-label">Body</label>
+        <input type="text" class="form-control" id="inputBody" name="inputBody">
+    </div>
+    <div class="mb-3">
+        <label for="inputMake" class="form-label">Make</label>
+        <input type="text" class="form-control" id="inputMake" name="inputMake">
+    </div>
+    <div class="mb-3">
+        <label for="inputModel" class="form-label">Model</label>
+        <input type="text" class="form-control" id="inputModel" name="inputModel">
+    </div>
+    <div class="mb-3">
+        <label for="inputYear" class="form-label">Year</label>
+        <input type="text" class="form-control" id="inputYear" name="inputYear">
+    </div>
+    <div class="mb-3">
+        <label for="inputColor" class="form-label">Color</label>
+        <input type="text" class="form-control" id="inputColor" name="inputColor">
+    </div>
+    <div class="mb-3">
+        <label for="inputPrice" class="form-label">Price</label>
+        <input type="text" class="form-control" id="inputPrice" name="inputPrice">
+    </div>   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% for post in posts %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{ url_for('blog.post_by_id', id=post.id) }}">{{ post.title }}</a></h5>
+            {{ post.body }}
+            {{post.make}}
+            {{post.model}}
+            {{post.year}}
+            {{post.color}}
+            {{post.price}}
+        </div>
+        <div class="card-footer">
+            This post brought to you by: {{ post.user.first_name }} {{ post.user.last_name }}
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}
