@@ -31,5 +31,5 @@ def create_post():
     new_post = Post(title = title, body = body, make = make, model = model, year = year, color = color, price = price, user_id=current_user.id)
     db.session.add(new_post)
     db.session.commit()
-    flash('Post created successfully', 'success')
+    flash('Car post created successfully', 'success')
     return redirect(url_for('blog.posts')) 
